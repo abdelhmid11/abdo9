@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تعليم البرمجيات</title>
+    <style>
+        /* إعدادات عامة */
+        body {
+            font-family: Arial, sans-serif;
+            direction: rtl;
+            text-align: center;
+            color: #eee;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            background: #0c0c0c;
+            position: relative;
+        }
+
+        /* تأثيرات الخلفية */
+        .background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255, 0, 0, 0.2), rgba(0, 0, 0, 0.7));
+            animation: animateBackground 15s linear infinite;
+            z-index: -1;
+        }
+
+        /* التأثير على الخلفية */
+        @keyframes animateBackground {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* تصميم الرسوم المتحركة للأيقونات البرمجية */
+        .programming-icon {
+            font-size: 5rem;
+            color: rgba(255, 255, 255, 0.6);
+            position: absolute;
+            animation: floatIcons 6s ease-in-out infinite;
+        }
+
+        @keyframes floatIcons {
+            0%, 100% { transform: translateY(0) scale(1); opacity: 0.7; }
+            50% { transform: translateY(-40px) scale(1.2); opacity: 1; }
+        }
+
+        .icon1 { top: 5%; left: 15%; }
+        .icon2 { top: 35%; left: 65%; }
+        .icon3 { top: 60%; left: 25%; }
+        .icon4 { top: 80%; left: 80%; }
+
+        /* تنسيق نافذة تسجيل الدخول */
+        .login-popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .login-form {
+            background-color: #333;
+            padding: 20px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 400px;
+            text-align: right;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .login-form input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: none;
+        }
+
+        .login-form button {
+            width: 100%;
+            padding: 10px;
+            background-color: #ff5722;
+            border: none;
+            color: #fff;
+            font-size: 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .login-form button:hover {
+            background-color: #ffd54f;
+        }
+
+        /* تنسيق الأقسام */
+        .section-content {
+            padding: 2rem;
+            margin: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.4);
+        }
+
+        h2 {
+            color: #ff5722;
+        }
+
+        a.learn-link {
+            color: #ffd54f;
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<!-- نافذة تسجيل الدخول -->
+<div class="login-popup" id="loginPopup">
+    <div class="login-form">
+        <h2>يرجى إدخال كلمة المرور</h2>
+        <input type="password" id="password" placeholder="أدخل كلمة المرور" required>
+        <button onclick="validatePassword()">دخول</button>
+    </div>
+</div>
+
+<!-- خلفية متحركة -->
+<div class="background"></div>
+
+<!-- محتويات الموقع -->
+<div id="content" style="display: none;">
+    <header>
+        <h1>مرحباً بكم في تعليم البرمجيات</h1>
+    </header>
+
+    <section id="about" class="section-content">
+        <h2>عن الموقع</h2>
+        <p>هذا الموقع تم إنشاؤه لتقديم محتوى تعليمي بواسطة المهندس عبدالحميد إبراهيم.</p>
+    </section>
+
+    <section id="learn" class="section-content">
+        <h2>تعلم البرمجة</h2>
+        <p>يمكنك البدء في تعلم البرمجة عبر الضغط على <a href="https://www.w3schools.com" target="_blank" class="learn-link">ابدأ</a>.</p>
+    </section>
+
+    <section id="contact" class="section-content">
+        <h2>تواصل معنا</h2>
+        <p>للتواصل عبر البريد الإلكتروني: <a href="mailto:abdelhmidibrahim2@gmail.com">abdelhmidibrahim2@gmail.com</a></p>
+    </section>
+
+    <!-- الرموز البرمجية المتحركة -->
+    <div class="programming-icon icon1">{} </div>
+    <div class="programming-icon icon2"><> </div>
+    <div class="programming-icon icon3"></> </div>
+    <div class="programming-icon icon4">{ }</div>
+
+    <footer>
+        <p>&copy; 2024 تعليم البرمجيات. جميع الحقوق محفوظة.</p>
+    </footer>
+</div>
+
+<script>
+    // التحقق من كلمة المرور
+    function validatePassword() {
+        var password = document.getElementById("password").value.trim();
+        if (password === "عبدالحميد") {
+            document.getElementById("loginPopup").style.display = "none"; // إخفاء نافذة التسجيل
+            document.getElementById("content").style.display = "block"; // إظهار محتوى الموقع
+        } else {
+            alert("كلمة المرور غير صحيحة!");
+        }
+    }
+</script>
+
+</body>
+</html>
